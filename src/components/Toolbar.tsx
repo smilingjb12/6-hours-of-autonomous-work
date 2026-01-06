@@ -270,7 +270,7 @@ export function Toolbar({ className = '' }: ToolbarProps) {
           <Button
             type="button"
             size="sm"
-            onClick={() => setIsCreateDialogOpen(true)}
+            onClick={() => { setIsCreateDialogOpen(true); }}
             data-testid="new-presentation-button"
             aria-label="Create new presentation"
           >
@@ -301,7 +301,7 @@ export function Toolbar({ className = '' }: ToolbarProps) {
                       setFocusedToolIndex(index)
                     }}
                     tabIndex={index === focusedToolIndex ? 0 : -1}
-                    onKeyDown={(e) => handleToolKeyDown(e, index)}
+                    onKeyDown={(e) => { handleToolKeyDown(e, index); }}
                     buttonRef={(el) => {
                       toolButtonRefs.current[index] = el
                     }}
@@ -356,7 +356,7 @@ export function Toolbar({ className = '' }: ToolbarProps) {
                   setFocusedToolIndex(index)
                 }}
                 tabIndex={index === focusedToolIndex ? 0 : -1}
-                onKeyDown={(e) => handleToolKeyDown(e, index)}
+                onKeyDown={(e) => { handleToolKeyDown(e, index); }}
                 buttonRef={(el) => {
                   toolButtonRefs.current[index] = el
                 }}
@@ -462,7 +462,7 @@ export function Toolbar({ className = '' }: ToolbarProps) {
       {/* Create Presentation Dialog */}
       <CreatePresentationDialog
         isOpen={isCreateDialogOpen}
-        onClose={() => setIsCreateDialogOpen(false)}
+        onClose={() => { setIsCreateDialogOpen(false); }}
         onCreate={handleCreatePresentation}
       />
     </>

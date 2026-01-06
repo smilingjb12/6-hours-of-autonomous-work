@@ -168,7 +168,7 @@ export function ExportImageDialog({
             <Label htmlFor="image-range">Export Range</Label>
             <Select
               value={range}
-              onValueChange={(value) => setRange(value as ExportRange)}
+              onValueChange={(value) => { setRange(value as ExportRange); }}
               disabled={isExporting}
             >
               <SelectTrigger id="image-range" data-testid="image-range-select">
@@ -194,7 +194,7 @@ export function ExportImageDialog({
             <Label htmlFor="image-format">Image Format</Label>
             <Select
               value={format}
-              onValueChange={(value) => setFormat(value as ImageFormat)}
+              onValueChange={(value) => { setFormat(value as ImageFormat); }}
               disabled={isExporting}
             >
               <SelectTrigger id="image-format" data-testid="image-format-select">
@@ -220,7 +220,7 @@ export function ExportImageDialog({
             <Label htmlFor="image-resolution">Resolution</Label>
             <Select
               value={resolution}
-              onValueChange={(value) => setResolution(value as ResolutionPreset)}
+              onValueChange={(value) => { setResolution(value as ResolutionPreset); }}
               disabled={isExporting}
             >
               <SelectTrigger id="image-resolution" data-testid="image-resolution-select">
@@ -249,7 +249,7 @@ export function ExportImageDialog({
                 min="10"
                 max="100"
                 value={jpegQuality}
-                onChange={(e) => setJpegQuality(Number(e.target.value))}
+                onChange={(e) => { setJpegQuality(Number(e.target.value)); }}
                 disabled={isExporting}
                 className="w-full h-2 bg-secondary-200 rounded-lg appearance-none cursor-pointer accent-primary-500"
                 data-testid="jpeg-quality-slider"

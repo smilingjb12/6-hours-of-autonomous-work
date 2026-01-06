@@ -76,12 +76,12 @@ export function useToast(): UseToastReturn {
   )
 
   const dismiss = useCallback(
-    (id: string) => removeNotification(id),
+    (id: string) => { removeNotification(id); },
     [removeNotification]
   )
 
   const dismissAll = useCallback(
-    () => clearAllNotifications(),
+    () => { clearAllNotifications(); },
     [clearAllNotifications]
   )
 

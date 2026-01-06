@@ -63,8 +63,13 @@ export function TextInputOverlay({
   const [content, setContent] = useState(initialContent)
   // Track if we've been mounted long enough to allow blur cancellation
   // This prevents immediate cancellation from mouseup events
-  const mountedTimeRef = useRef<number>(Date.now())
+  const mountedTimeRef = useRef<number>(0)
   const hasInteractedRef = useRef<boolean>(false)
+
+  // Set mounted time on initial mount (not during render to avoid impure function call)
+  useEffect(() => {
+    mountedTimeRef.current = Date.now()
+  }, [])
 
   // Calculate screen position from slide coordinates
   const calculateScreenPosition = useCallback(() => {

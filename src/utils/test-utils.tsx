@@ -96,7 +96,7 @@ export function createMockFn<T extends (...args: unknown[]) => unknown>(): (
  */
 export async function suppressConsoleErrors(fn: () => Promise<void> | void) {
   const originalError = console.error
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+   
   console.error = () => {}
   try {
     await fn()

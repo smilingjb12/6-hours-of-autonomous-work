@@ -200,12 +200,12 @@ export async function exportToPdf(
       )
 
       // Add slide notes if enabled
-      if (includeNotes && slide.notes && slide.notes.trim()) {
+      if (includeNotes && slide.notes?.trim()) {
         pdf.setFontSize(8)
         pdf.setTextColor(100, 100, 100)
         const notesY = yOffset + slideHeight + 5
         const notesText = `Notes: ${slide.notes}`
-        const splitNotes = pdf.splitTextToSize(notesText, availableWidth)
+        const splitNotes = pdf.splitTextToSize(notesText, availableWidth) as string[]
         pdf.text(splitNotes, margin, notesY)
       }
 

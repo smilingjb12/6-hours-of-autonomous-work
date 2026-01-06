@@ -149,7 +149,7 @@ export function useKeyboardShortcuts() {
 
       // Deep copy the element and assign new ID
       const duplicatedElement: SlideElement = {
-        ...JSON.parse(JSON.stringify(element)),
+        ...(JSON.parse(JSON.stringify(element)) as SlideElement),
         id: newId,
         position: {
           // Apply offset only when pasting to the same slide
@@ -528,18 +528,18 @@ export function useKeyboardShortcuts() {
     deleteSelected: handleDelete,
     copy: handleCopy,
     paste: handlePaste,
-    alignLeft: () => handleAlign('left'),
-    alignCenter: () => handleAlign('center'),
-    alignRight: () => handleAlign('right'),
-    alignTop: () => handleAlign('top'),
-    alignMiddle: () => handleAlign('middle'),
-    alignBottom: () => handleAlign('bottom'),
-    distributeHorizontal: () => handleDistribute('horizontal'),
-    distributeVertical: () => handleDistribute('vertical'),
-    moveUp: (large = false) => handleArrowMove('up', large),
-    moveDown: (large = false) => handleArrowMove('down', large),
-    moveLeft: (large = false) => handleArrowMove('left', large),
-    moveRight: (large = false) => handleArrowMove('right', large),
+    alignLeft: () => { handleAlign('left'); },
+    alignCenter: () => { handleAlign('center'); },
+    alignRight: () => { handleAlign('right'); },
+    alignTop: () => { handleAlign('top'); },
+    alignMiddle: () => { handleAlign('middle'); },
+    alignBottom: () => { handleAlign('bottom'); },
+    distributeHorizontal: () => { handleDistribute('horizontal'); },
+    distributeVertical: () => { handleDistribute('vertical'); },
+    moveUp: (large = false) => { handleArrowMove('up', large); },
+    moveDown: (large = false) => { handleArrowMove('down', large); },
+    moveLeft: (large = false) => { handleArrowMove('left', large); },
+    moveRight: (large = false) => { handleArrowMove('right', large); },
     // Zoom actions
     zoomIn: handleZoomIn,
     zoomOut: handleZoomOut,

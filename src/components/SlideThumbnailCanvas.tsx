@@ -111,7 +111,7 @@ export function SlideThumbnailCanvas({
         renderThumbnail()
       }
     }
-    preloadAndRender()
+    void preloadAndRender()
   }, [slide, slide.elements, slide.background, renderThumbnail])
 
   return (

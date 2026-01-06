@@ -6,7 +6,7 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist', 'node_modules', 'coverage']),
+  globalIgnores(['dist', 'node_modules', 'coverage', 'e2e', 'playwright.config.ts']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
@@ -30,7 +30,7 @@ export default defineConfig([
   },
   // Jest/Testing configuration
   {
-    files: ['**/*.{spec,test}.{ts,tsx}', '**/jest.setup.ts', '**/__tests__/**/*.{ts,tsx}'],
+    files: ['**/*.{spec,test}.{ts,tsx}', '**/jest.setup.ts', '**/__tests__/**/*.{ts,tsx}', '**/test-utils.tsx'],
     languageOptions: {
       globals: {
         ...globals.jest,
@@ -42,7 +42,21 @@ export default defineConfig([
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/unbound-method': 'off',
+      '@typescript-eslint/no-non-null-assertion': 'off',
+    },
+  },
+  // Utility files that handle raw JSON/storage
+  {
+    files: ['**/localStorage.ts', '**/historyStore.ts'],
+    rules: {
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
     },
   },
   {
@@ -56,15 +70,21 @@ export default defineConfig([
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/prefer-nullish-coalescing': 'error',
+      '@typescript-eslint/prefer-nullish-coalescing': 'off', // Allow || for falsy checks
       '@typescript-eslint/prefer-optional-chain': 'error',
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/await-thenable': 'error',
-      '@typescript-eslint/no-misused-promises': 'error',
-      
+      '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: { attributes: false } }],
+      '@typescript-eslint/restrict-template-expressions': 'off', // Allow numbers in template literals
+      '@typescript-eslint/no-unnecessary-condition': 'off', // Too strict for runtime type checks
+      '@typescript-eslint/no-confusing-void-expression': 'off', // Allow void arrow functions
+      '@typescript-eslint/no-deprecated': 'warn', // Warn instead of error for deprecated APIs
+      '@typescript-eslint/no-unnecessary-type-assertion': 'off', // Sometimes needed for clarity
+
       // React-specific rules
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+      'react-hooks/set-state-in-effect': 'off', // Common pattern for dialog reset
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },

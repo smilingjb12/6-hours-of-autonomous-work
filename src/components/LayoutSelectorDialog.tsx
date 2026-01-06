@@ -20,7 +20,6 @@ import {
 import { Button } from '@components/ui/button'
 import { cn } from '@lib/utils'
 import { SLIDE_LAYOUTS, type SlideLayoutType, type SlideLayoutMeta } from '../types/layout'
-import { FileText, Type, LayoutTemplate, Columns2 } from 'lucide-react'
 
 /**
  * Props for LayoutSelectorDialog
@@ -36,24 +35,6 @@ interface LayoutSelectorDialogProps {
   title?: string
   /** Description for the dialog */
   description?: string
-}
-
-/**
- * Get icon for a layout type
- */
-function getLayoutIcon(layoutType: SlideLayoutType): React.ReactNode {
-  switch (layoutType) {
-    case 'blank':
-      return <FileText className="w-8 h-8 text-secondary-400" />
-    case 'title':
-      return <Type className="w-8 h-8 text-secondary-400" />
-    case 'title-content':
-      return <LayoutTemplate className="w-8 h-8 text-secondary-400" />
-    case 'two-column':
-      return <Columns2 className="w-8 h-8 text-secondary-400" />
-    default:
-      return <FileText className="w-8 h-8 text-secondary-400" />
-  }
 }
 
 /**
@@ -173,6 +154,11 @@ export function LayoutSelectorDialog({
     }
   }, [isOpen])
 
+  const handleConfirm = useCallback((layoutType?: SlideLayoutType) => {
+    onSelectLayout(layoutType ?? selectedLayout)
+    onClose()
+  }, [selectedLayout, onSelectLayout, onClose])
+
   // Handle keyboard navigation
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent, index: number) => {
@@ -198,13 +184,14 @@ export function LayoutSelectorDialog({
           newIndex = SLIDE_LAYOUTS.length - 1
           break
         case 'Enter':
-        case ' ':
+        case ' ': {
           e.preventDefault()
           const layout = SLIDE_LAYOUTS[index]
           if (layout) {
             handleConfirm(layout.id)
           }
           return
+        }
         default:
           return
       }
@@ -216,13 +203,8 @@ export function LayoutSelectorDialog({
       }
       layoutRefs.current[newIndex]?.focus()
     },
-    []
+    [handleConfirm]
   )
-
-  const handleConfirm = useCallback((layoutType?: SlideLayoutType) => {
-    onSelectLayout(layoutType ?? selectedLayout)
-    onClose()
-  }, [selectedLayout, onSelectLayout, onClose])
 
   const handleLayoutClick = useCallback((layout: SlideLayoutMeta, index: number) => {
     setSelectedLayout(layout.id)
@@ -255,8 +237,8 @@ export function LayoutSelectorDialog({
               key={layout.id}
               layout={layout}
               isSelected={selectedLayout === layout.id}
-              onSelect={() => handleLayoutClick(layout, index)}
-              onKeyDown={(e) => handleKeyDown(e, index)}
+              onSelect={() => { handleLayoutClick(layout, index); }}
+              onKeyDown={(e) => { handleKeyDown(e, index); }}
               tabIndex={index === focusedIndex ? 0 : -1}
               buttonRef={(el) => {
                 layoutRefs.current[index] = el
@@ -277,7 +259,7 @@ export function LayoutSelectorDialog({
           </Button>
           <Button
             type="button"
-            onClick={() => handleConfirm()}
+            onClick={() => { handleConfirm(); }}
             data-testid="layout-confirm-button"
           >
             Create Slide

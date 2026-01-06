@@ -214,17 +214,17 @@ export function NavigationHeader({ className = '' }: NavigationHeaderProps) {
         { label: 'divider', divider: true },
         {
           label: isSidebarOpen ? 'Hide Slides Panel' : 'Show Slides Panel',
-          action: () => toggleSidebar(),
+          action: () => { toggleSidebar(); },
         },
         {
           label: isPropertiesPanelOpen ? 'Hide Properties Panel' : 'Show Properties Panel',
-          action: () => togglePropertiesPanel(),
+          action: () => { togglePropertiesPanel(); },
         },
-        { label: showGrid ? 'Hide Grid' : 'Show Grid', action: () => toggleGrid() },
+        { label: showGrid ? 'Hide Grid' : 'Show Grid', action: () => { toggleGrid(); } },
         { label: 'divider', divider: true },
-        { label: 'Zoom In', shortcut: 'Ctrl++', action: () => zoomIn() },
-        { label: 'Zoom Out', shortcut: 'Ctrl+-', action: () => zoomOut() },
-        { label: 'Reset Zoom', shortcut: 'Ctrl+0', action: () => resetZoom() },
+        { label: 'Zoom In', shortcut: 'Ctrl++', action: () => { zoomIn(); } },
+        { label: 'Zoom Out', shortcut: 'Ctrl+-', action: () => { zoomOut(); } },
+        { label: 'Reset Zoom', shortcut: 'Ctrl+0', action: () => { resetZoom(); } },
       ],
     },
     {
@@ -374,7 +374,7 @@ export function NavigationHeader({ className = '' }: NavigationHeaderProps) {
       {/* PDF Export Dialog */}
       <ExportPdfDialog
         isOpen={isPdfDialogOpen}
-        onClose={() => setIsPdfDialogOpen(false)}
+        onClose={() => { setIsPdfDialogOpen(false); }}
         presentation={currentPresentation ?? null}
         onExportComplete={handlePdfExportComplete}
       />
@@ -382,7 +382,7 @@ export function NavigationHeader({ className = '' }: NavigationHeaderProps) {
       {/* Image Export Dialog */}
       <ExportImageDialog
         isOpen={isImageDialogOpen}
-        onClose={() => setIsImageDialogOpen(false)}
+        onClose={() => { setIsImageDialogOpen(false); }}
         presentation={currentPresentation ?? null}
         currentSlideId={currentSlideId}
         onExportComplete={handleImageExportComplete}

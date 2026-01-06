@@ -151,7 +151,7 @@ export function ExportPdfDialog({
             <Label htmlFor="pdf-layout">Page Layout</Label>
             <Select
               value={layout}
-              onValueChange={(value) => setLayout(value as PageLayout)}
+              onValueChange={(value) => { setLayout(value as PageLayout); }}
               disabled={isExporting}
             >
               <SelectTrigger id="pdf-layout" data-testid="pdf-layout-select">
@@ -177,7 +177,7 @@ export function ExportPdfDialog({
             <Label htmlFor="pdf-quality">Export Quality</Label>
             <Select
               value={quality}
-              onValueChange={(value) => setQuality(value as QualitySetting)}
+              onValueChange={(value) => { setQuality(value as QualitySetting); }}
               disabled={isExporting}
             >
               <SelectTrigger id="pdf-quality" data-testid="pdf-quality-select">
@@ -206,7 +206,7 @@ export function ExportPdfDialog({
               type="checkbox"
               id="include-notes"
               checked={includeNotes}
-              onChange={(e) => setIncludeNotes(e.target.checked)}
+              onChange={(e) => { setIncludeNotes(e.target.checked); }}
               disabled={isExporting}
               className="h-4 w-4 rounded border-secondary-300 text-primary-600 focus:ring-primary-500"
               data-testid="include-notes-checkbox"

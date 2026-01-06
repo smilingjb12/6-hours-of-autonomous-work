@@ -234,12 +234,12 @@ export class SlideCanvasRenderer {
       case 'image':
         if (background.imageSrc) {
           const cachedImage = this.imageCache.get(background.imageSrc)
-          if (cachedImage && cachedImage.complete) {
+          if (cachedImage?.complete) {
             const fillMode = background.imageFillMode || 'cover'
             this.renderBackgroundImage(cachedImage, fillMode)
           } else {
             // Load image and trigger re-render when done
-            this.loadImage(background.imageSrc)
+            void this.loadImage(background.imageSrc)
             // Fill with solid color as fallback while loading
             this.ctx.fillStyle = background.color || '#ffffff'
             this.ctx.fillRect(0, 0, width, height)
@@ -568,9 +568,9 @@ export class SlideCanvasRenderer {
     const { position, dimensions, src, objectFit } = element
 
     const cachedImage = this.imageCache.get(src)
-    if (!cachedImage || !cachedImage.complete) {
+    if (!cachedImage?.complete) {
       // Load image and show placeholder
-      this.loadImage(src)
+      void this.loadImage(src)
       this.renderImagePlaceholder(position, dimensions)
       return
     }

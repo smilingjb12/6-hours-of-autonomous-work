@@ -253,7 +253,7 @@ export function PresentationMode({ onExit }: PresentationModeProps) {
     }
 
     document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
+    return () => { document.removeEventListener('keydown', handleKeyDown); }
   }, [nextSlide, prevSlide, onExit, totalSlides, announce, showJumpInput])
 
   // Calculate canvas size to fit viewport while maintaining aspect ratio
@@ -284,7 +284,7 @@ export function PresentationMode({ onExit }: PresentationModeProps) {
   useEffect(() => {
     calculateCanvasSize()
     window.addEventListener('resize', calculateCanvasSize)
-    return () => window.removeEventListener('resize', calculateCanvasSize)
+    return () => { window.removeEventListener('resize', calculateCanvasSize); }
   }, [calculateCanvasSize])
 
   // Track renderer ready state
@@ -381,15 +381,15 @@ export function PresentationMode({ onExit }: PresentationModeProps) {
       slidesToPreload.push(prevSlideToPreload)
     }
 
-    Promise.all(slidesToPreload.map((slide) => renderer.preloadImages(slide)))
+    void Promise.all(slidesToPreload.map((slide) => renderer.preloadImages(slide)))
   }, [slides, currentSlideIndex])
 
   // Request fullscreen on mount
   useEffect(() => {
     const container = containerRef.current
     if (container && document.fullscreenEnabled) {
-      container.requestFullscreen().catch((err) => {
-        console.log('Could not enter fullscreen mode:', err)
+      container.requestFullscreen().catch((err: unknown) => {
+        console.warn('Could not enter fullscreen mode:', err)
       })
     }
 
@@ -413,7 +413,7 @@ export function PresentationMode({ onExit }: PresentationModeProps) {
     }
 
     document.addEventListener('fullscreenchange', handleFullscreenChange)
-    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange)
+    return () => { document.removeEventListener('fullscreenchange', handleFullscreenChange); }
   }, [onExit])
 
   // Focus container for keyboard events
@@ -569,7 +569,7 @@ export function PresentationMode({ onExit }: PresentationModeProps) {
           <form
             className="presentation-mode-jump-form"
             onSubmit={handleJumpInputSubmit}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => { e.stopPropagation(); }}
           >
             <label htmlFor="jump-slide-input" className="presentation-mode-jump-label">
               Go to slide:
@@ -582,7 +582,7 @@ export function PresentationMode({ onExit }: PresentationModeProps) {
                 min={1}
                 max={totalSlides}
                 value={jumpInputValue}
-                onChange={(e) => setJumpInputValue(e.target.value)}
+                onChange={(e) => { setJumpInputValue(e.target.value); }}
                 onKeyDown={handleJumpInputKeyDown}
                 className="presentation-mode-jump-input"
                 placeholder={`1-${totalSlides}`}
@@ -620,7 +620,7 @@ export function PresentationMode({ onExit }: PresentationModeProps) {
       {showNotes && currentSlide && (
         <div
           className="presentation-mode-notes"
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e) => { e.stopPropagation(); }}
           data-testid="presentation-notes-panel"
           role="complementary"
           aria-label="Speaker notes"
@@ -630,7 +630,7 @@ export function PresentationMode({ onExit }: PresentationModeProps) {
             <button
               type="button"
               className="presentation-mode-notes-close"
-              onClick={() => setShowNotes(false)}
+              onClick={() => { setShowNotes(false); }}
               aria-label="Close notes panel"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

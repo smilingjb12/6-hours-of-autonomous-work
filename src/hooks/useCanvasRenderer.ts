@@ -84,7 +84,11 @@ export function useCanvasRenderer(
 
   // Keep a ref to the current slide so render function always has latest value
   const currentSlideRef = useRef(currentSlide)
-  currentSlideRef.current = currentSlide
+
+  // Update ref when currentSlide changes (must be in useEffect, not during render)
+  useEffect(() => {
+    currentSlideRef.current = currentSlide
+  }, [currentSlide])
 
   // Detect when canvas element becomes available (handles conditional rendering)
   useEffect(() => {
@@ -102,7 +106,7 @@ export function useCanvasRenderer(
     const observer = new MutationObserver(checkCanvas)
     observer.observe(document.body, { childList: true, subtree: true })
 
-    return () => observer.disconnect()
+    return () => { observer.disconnect(); }
   }, [canvasElement])
 
   // Initialize renderer when canvas is mounted
@@ -176,7 +180,7 @@ export function useCanvasRenderer(
   useEffect(() => {
     const renderer = rendererRef.current
     if (renderer && currentSlide) {
-      renderer.preloadImages(currentSlide).then(() => {
+      void renderer.preloadImages(currentSlide).then(() => {
         // Re-render after images are loaded
         render()
       })

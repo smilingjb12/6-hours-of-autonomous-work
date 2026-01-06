@@ -90,12 +90,6 @@ function createTextElement(
 }
 
 /**
- * Canvas dimensions (16:9 aspect ratio)
- */
-const CANVAS_WIDTH = 960
-const CANVAS_HEIGHT = 540
-
-/**
  * Create elements for a blank layout
  */
 function createBlankLayoutElements(): SlideElement[] {

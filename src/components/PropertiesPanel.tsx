@@ -495,7 +495,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                   type="button"
                   variant="outline"
                   className="w-full"
-                  onClick={() => setIsLayoutSelectorOpen(true)}
+                  onClick={() => { setIsLayoutSelectorOpen(true); }}
                   data-testid="change-layout-button"
                 >
                   Change Layout
@@ -555,7 +555,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                       type="color"
                       className="w-10 h-10 p-0 border border-secondary-300 rounded cursor-pointer"
                       value={currentSlide.background.color ?? '#ffffff'}
-                      onChange={(e) => handleBackgroundUpdate({ color: e.target.value })}
+                      onChange={(e) => { handleBackgroundUpdate({ color: e.target.value }); }}
                       aria-label="Background color picker"
                       data-testid="background-color-picker"
                     />
@@ -563,7 +563,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                       type="text"
                       className="flex-1"
                       value={currentSlide.background.color ?? '#ffffff'}
-                      onChange={(e) => handleBackgroundUpdate({ color: e.target.value })}
+                      onChange={(e) => { handleBackgroundUpdate({ color: e.target.value }); }}
                       placeholder="#ffffff"
                       data-testid="background-color-input"
                     />
@@ -580,7 +580,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                     <Select
                       value={currentSlide.background.gradientDirection || 'diagonal'}
                       onValueChange={(value: 'horizontal' | 'vertical' | 'diagonal') =>
-                        handleBackgroundUpdate({ gradientDirection: value })
+                        { handleBackgroundUpdate({ gradientDirection: value }); }
                       }
                     >
                       <SelectTrigger id={ids.bgGradientDirection} data-testid="gradient-direction-select">
@@ -603,7 +603,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                         type="color"
                         className="w-10 h-10 p-0 border border-secondary-300 rounded cursor-pointer"
                         value={currentSlide.background.gradientStart ?? '#ffffff'}
-                        onChange={(e) => handleBackgroundUpdate({ gradientStart: e.target.value })}
+                        onChange={(e) => { handleBackgroundUpdate({ gradientStart: e.target.value }); }}
                         aria-label="Gradient start color picker"
                         data-testid="gradient-start-color-picker"
                       />
@@ -611,7 +611,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                         type="text"
                         className="flex-1"
                         value={currentSlide.background.gradientStart ?? '#ffffff'}
-                        onChange={(e) => handleBackgroundUpdate({ gradientStart: e.target.value })}
+                        onChange={(e) => { handleBackgroundUpdate({ gradientStart: e.target.value }); }}
                         placeholder="#ffffff"
                         data-testid="gradient-start-color-input"
                       />
@@ -627,7 +627,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                         type="color"
                         className="w-10 h-10 p-0 border border-secondary-300 rounded cursor-pointer"
                         value={currentSlide.background.gradientEnd ?? '#f97316'}
-                        onChange={(e) => handleBackgroundUpdate({ gradientEnd: e.target.value })}
+                        onChange={(e) => { handleBackgroundUpdate({ gradientEnd: e.target.value }); }}
                         aria-label="Gradient end color picker"
                         data-testid="gradient-end-color-picker"
                       />
@@ -635,7 +635,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                         type="text"
                         className="flex-1"
                         value={currentSlide.background.gradientEnd ?? '#f97316'}
-                        onChange={(e) => handleBackgroundUpdate({ gradientEnd: e.target.value })}
+                        onChange={(e) => { handleBackgroundUpdate({ gradientEnd: e.target.value }); }}
                         placeholder="#f97316"
                         data-testid="gradient-end-color-input"
                       />
@@ -676,7 +676,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                     <Select
                       value={currentSlide.background.imageFillMode || 'cover'}
                       onValueChange={(value: BackgroundImageFillMode) =>
-                        handleBackgroundUpdate({ imageFillMode: value })
+                        { handleBackgroundUpdate({ imageFillMode: value }); }
                       }
                     >
                       <SelectTrigger id={ids.bgImageFillMode} data-testid="image-fill-mode-select">
@@ -815,7 +815,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                 className="min-h-[100px] resize-y"
                 placeholder="Add speaker notes for this slide..."
                 value={currentSlide.notes}
-                onChange={(e) => handleNotesUpdate(e.target.value)}
+                onChange={(e) => { handleNotesUpdate(e.target.value); }}
                 data-testid="slide-notes-input"
               />
               <p className="text-xs text-secondary-500 mt-1">
@@ -1020,7 +1020,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                         id={ids.content}
                         className="min-h-[60px] resize-none"
                         value={selectedElement.content}
-                        onChange={(e) => handleTextPropertyUpdate({ content: e.target.value })}
+                        onChange={(e) => { handleTextPropertyUpdate({ content: e.target.value }); }}
                         data-testid="text-content-input"
                       />
                     </div>
@@ -1030,7 +1030,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                       <Label htmlFor={ids.fontFamily}>Font Family</Label>
                       <Select
                         value={selectedElement.fontFamily}
-                        onValueChange={(value) => handleTextPropertyUpdate({ fontFamily: value })}
+                        onValueChange={(value) => { handleTextPropertyUpdate({ fontFamily: value }); }}
                       >
                         <SelectTrigger id={ids.fontFamily} data-testid="font-family-select">
                           <SelectValue placeholder="Select font" />
@@ -1076,7 +1076,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                             type="color"
                             className="w-8 h-9 p-0 border border-secondary-300 rounded cursor-pointer"
                             value={selectedElement.color}
-                            onChange={(e) => handleTextPropertyUpdate({ color: e.target.value })}
+                            onChange={(e) => { handleTextPropertyUpdate({ color: e.target.value }); }}
                             aria-label="Text color picker"
                             data-testid="text-color-input"
                           />
@@ -1084,7 +1084,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                             type="text"
                             className="flex-1"
                             value={selectedElement.color}
-                            onChange={(e) => handleTextPropertyUpdate({ color: e.target.value })}
+                            onChange={(e) => { handleTextPropertyUpdate({ color: e.target.value }); }}
                             placeholder="#000000"
                             data-testid="text-color-text-input"
                           />
@@ -1101,9 +1101,9 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                           variant={selectedElement.fontWeight === 'bold' ? 'secondary' : 'ghost'}
                           size="icon"
                           onClick={() =>
-                            handleTextPropertyUpdate({
+                            { handleTextPropertyUpdate({
                               fontWeight: selectedElement.fontWeight === 'bold' ? 'normal' : 'bold',
-                            })
+                            }); }
                           }
                           aria-label="Toggle bold"
                           aria-pressed={selectedElement.fontWeight === 'bold'}
@@ -1116,9 +1116,9 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                           variant={selectedElement.fontStyle === 'italic' ? 'secondary' : 'ghost'}
                           size="icon"
                           onClick={() =>
-                            handleTextPropertyUpdate({
+                            { handleTextPropertyUpdate({
                               fontStyle: selectedElement.fontStyle === 'italic' ? 'normal' : 'italic',
-                            })
+                            }); }
                           }
                           aria-label="Toggle italic"
                           aria-pressed={selectedElement.fontStyle === 'italic'}
@@ -1137,7 +1137,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                           type="button"
                           variant={selectedElement.textAlign === 'left' ? 'secondary' : 'ghost'}
                           size="icon"
-                          onClick={() => handleTextPropertyUpdate({ textAlign: 'left' })}
+                          onClick={() => { handleTextPropertyUpdate({ textAlign: 'left' }); }}
                           aria-label="Align left"
                           aria-pressed={selectedElement.textAlign === 'left'}
                           data-testid="align-left-button"
@@ -1148,7 +1148,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                           type="button"
                           variant={selectedElement.textAlign === 'center' ? 'secondary' : 'ghost'}
                           size="icon"
-                          onClick={() => handleTextPropertyUpdate({ textAlign: 'center' })}
+                          onClick={() => { handleTextPropertyUpdate({ textAlign: 'center' }); }}
                           aria-label="Align center"
                           aria-pressed={selectedElement.textAlign === 'center'}
                           data-testid="align-center-button"
@@ -1159,7 +1159,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                           type="button"
                           variant={selectedElement.textAlign === 'right' ? 'secondary' : 'ghost'}
                           size="icon"
-                          onClick={() => handleTextPropertyUpdate({ textAlign: 'right' })}
+                          onClick={() => { handleTextPropertyUpdate({ textAlign: 'right' }); }}
                           aria-label="Align right"
                           aria-pressed={selectedElement.textAlign === 'right'}
                           data-testid="align-right-button"
@@ -1201,7 +1201,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                           type="color"
                           className="w-8 h-9 p-0 border border-secondary-300 rounded cursor-pointer"
                           value={selectedElement.fillColor}
-                          onChange={(e) => handleShapePropertyUpdate({ fillColor: e.target.value })}
+                          onChange={(e) => { handleShapePropertyUpdate({ fillColor: e.target.value }); }}
                           aria-label="Fill color picker"
                           data-testid="shape-fill-color-input"
                         />
@@ -1209,7 +1209,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                           type="text"
                           className="flex-1"
                           value={selectedElement.fillColor}
-                          onChange={(e) => handleShapePropertyUpdate({ fillColor: e.target.value })}
+                          onChange={(e) => { handleShapePropertyUpdate({ fillColor: e.target.value }); }}
                           placeholder="#000000"
                           data-testid="shape-fill-color-text"
                         />
@@ -1225,7 +1225,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                           type="color"
                           className="w-8 h-9 p-0 border border-secondary-300 rounded cursor-pointer"
                           value={selectedElement.strokeColor}
-                          onChange={(e) => handleShapePropertyUpdate({ strokeColor: e.target.value })}
+                          onChange={(e) => { handleShapePropertyUpdate({ strokeColor: e.target.value }); }}
                           aria-label="Stroke color picker"
                           data-testid="shape-stroke-color-input"
                         />
@@ -1233,7 +1233,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                           type="text"
                           className="flex-1"
                           value={selectedElement.strokeColor}
-                          onChange={(e) => handleShapePropertyUpdate({ strokeColor: e.target.value })}
+                          onChange={(e) => { handleShapePropertyUpdate({ strokeColor: e.target.value }); }}
                           placeholder="#000000"
                           data-testid="shape-stroke-color-text"
                         />
@@ -1363,7 +1363,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                         id={ids.alt}
                         type="text"
                         value={selectedElement.alt}
-                        onChange={(e) => handleImagePropertyUpdate({ alt: e.target.value })}
+                        onChange={(e) => { handleImagePropertyUpdate({ alt: e.target.value }); }}
                         placeholder="Describe the image..."
                         data-testid="image-alt-input"
                       />
@@ -1375,7 +1375,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                       <Select
                         value={selectedElement.objectFit}
                         onValueChange={(value: 'cover' | 'contain' | 'fill' | 'none') =>
-                          handleImagePropertyUpdate({ objectFit: value })
+                          { handleImagePropertyUpdate({ objectFit: value }); }
                         }
                       >
                         <SelectTrigger id={`${ids.src}-fit`} data-testid="image-objectfit-select">
@@ -1426,7 +1426,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                       type="button"
                       variant="ghost"
                       size="icon"
-                      onClick={() => handleAlign('left')}
+                      onClick={() => { handleAlign('left'); }}
                       title="Align left edges"
                       aria-label="Align left edges"
                       data-testid="align-elements-left"
@@ -1437,7 +1437,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                       type="button"
                       variant="ghost"
                       size="icon"
-                      onClick={() => handleAlign('center')}
+                      onClick={() => { handleAlign('center'); }}
                       title="Align horizontal centers"
                       aria-label="Align horizontal centers"
                       data-testid="align-elements-center"
@@ -1448,7 +1448,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                       type="button"
                       variant="ghost"
                       size="icon"
-                      onClick={() => handleAlign('right')}
+                      onClick={() => { handleAlign('right'); }}
                       title="Align right edges"
                       aria-label="Align right edges"
                       data-testid="align-elements-right"
@@ -1466,7 +1466,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                       type="button"
                       variant="ghost"
                       size="icon"
-                      onClick={() => handleAlign('top')}
+                      onClick={() => { handleAlign('top'); }}
                       title="Align top edges"
                       aria-label="Align top edges"
                       data-testid="align-elements-top"
@@ -1477,7 +1477,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                       type="button"
                       variant="ghost"
                       size="icon"
-                      onClick={() => handleAlign('middle')}
+                      onClick={() => { handleAlign('middle'); }}
                       title="Align vertical centers"
                       aria-label="Align vertical centers"
                       data-testid="align-elements-middle"
@@ -1488,7 +1488,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                       type="button"
                       variant="ghost"
                       size="icon"
-                      onClick={() => handleAlign('bottom')}
+                      onClick={() => { handleAlign('bottom'); }}
                       title="Align bottom edges"
                       aria-label="Align bottom edges"
                       data-testid="align-elements-bottom"
@@ -1513,7 +1513,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                       type="button"
                       variant="ghost"
                       size="icon"
-                      onClick={() => handleDistribute('horizontal')}
+                      onClick={() => { handleDistribute('horizontal'); }}
                       title="Distribute horizontally"
                       aria-label="Distribute horizontally"
                       data-testid="distribute-horizontal"
@@ -1524,7 +1524,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
                       type="button"
                       variant="ghost"
                       size="icon"
-                      onClick={() => handleDistribute('vertical')}
+                      onClick={() => { handleDistribute('vertical'); }}
                       title="Distribute vertically"
                       aria-label="Distribute vertically"
                       data-testid="distribute-vertical"
@@ -1551,7 +1551,7 @@ export function PropertiesPanel({ className = '', isTablet = false }: Properties
       {/* Layout selector dialog for changing slide layout */}
       <LayoutSelectorDialog
         isOpen={isLayoutSelectorOpen}
-        onClose={() => setIsLayoutSelectorOpen(false)}
+        onClose={() => { setIsLayoutSelectorOpen(false); }}
         onSelectLayout={handleApplyLayout}
         title="Change Slide Layout"
         description="Select a new layout for this slide. This will replace the current elements."

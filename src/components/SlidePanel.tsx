@@ -602,10 +602,10 @@ export function SlidePanel({ className = '', isTablet = false }: SlidePanelProps
                   isDragging={slide.id === dragState.draggedSlideId}
                   isDropTarget={getDropPosition(index) !== null}
                   dropPosition={getDropPosition(index)}
-                  onClick={() => handleSlideClick(slide.id)}
-                  onKeyDown={(e) => handleSlideKeyDown(e, index)}
-                  onDeleteClick={(e) => handleDeleteClick(e, slide, index)}
-                  onDragStart={(e) => handleDragStart(e, slide.id, index)}
+                  onClick={() => { handleSlideClick(slide.id); }}
+                  onKeyDown={(e) => { handleSlideKeyDown(e, index); }}
+                  onDeleteClick={(e) => { handleDeleteClick(e, slide, index); }}
+                  onDragStart={(e) => { handleDragStart(e, slide.id, index); }}
                   tabIndex={
                     slide.id === currentSlideId || (currentSlideIndex === -1 && index === 0)
                       ? 0
@@ -652,7 +652,7 @@ export function SlidePanel({ className = '', isTablet = false }: SlidePanelProps
       {/* Layout selector dialog */}
       <LayoutSelectorDialog
         isOpen={isLayoutSelectorOpen}
-        onClose={() => setIsLayoutSelectorOpen(false)}
+        onClose={() => { setIsLayoutSelectorOpen(false); }}
         onSelectLayout={handleLayoutSelect}
         title="Add New Slide"
         description="Choose a layout template for your new slide"

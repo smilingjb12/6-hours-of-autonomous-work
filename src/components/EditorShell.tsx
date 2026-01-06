@@ -134,7 +134,7 @@ export function EditorShell({ className = '' }: EditorShellProps) {
     }
 
     document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
+    return () => { document.removeEventListener('keydown', handleKeyDown); }
   }, [announce, isFullscreen, toggleFullscreen])
 
   // Render presentation mode when active

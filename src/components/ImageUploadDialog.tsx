@@ -187,8 +187,8 @@ export function ImageUploadDialog({
       img.crossOrigin = 'anonymous'
 
       await new Promise<void>((resolve, reject) => {
-        img.onload = () => resolve()
-        img.onerror = () => reject(new Error('Failed to load image'))
+        img.onload = () => { resolve(); }
+        img.onerror = () => { reject(new Error('Failed to load image')); }
         img.src = url
       })
 
@@ -210,9 +210,9 @@ export function ImageUploadDialog({
       setImageSrc(url)
       // Debounce URL validation
       const timeoutId = setTimeout(() => {
-        validateUrl(url)
+        void validateUrl(url)
       }, 500)
-      return () => clearTimeout(timeoutId)
+      return () => { clearTimeout(timeoutId); }
     },
     [validateUrl]
   )
@@ -452,7 +452,7 @@ export function ImageUploadDialog({
                 id="image-alt"
                 placeholder="Describe the image..."
                 value={altText}
-                onChange={(e) => setAltText(e.target.value)}
+                onChange={(e) => { setAltText(e.target.value); }}
                 data-testid="image-alt-input"
               />
             </div>

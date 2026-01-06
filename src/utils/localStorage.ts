@@ -273,7 +273,7 @@ function isValidPresentation(obj: unknown): boolean {
   const p = obj as Record<string, unknown>
 
   // Check required fields using bracket notation for index signatures
-  if (typeof p['id'] !== 'string' || (p['id'] as string).length === 0) return false
+  if (typeof p['id'] !== 'string' || (p['id']).length === 0) return false
   if (typeof p['name'] !== 'string') return false
   if (!Array.isArray(p['slides'])) return false
 

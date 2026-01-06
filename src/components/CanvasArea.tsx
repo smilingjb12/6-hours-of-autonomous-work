@@ -177,7 +177,7 @@ export function CanvasArea({ className = '', isTablet = false }: CanvasAreaProps
       if (activeTool === 'text') {
         // Check if clicking on an existing text element to edit it
         const clickedElement = getElementAtPoint(canvasPos.x, canvasPos.y)
-        if (clickedElement && clickedElement.type === 'text') {
+        if (clickedElement?.type === 'text') {
           // Edit existing text element
           setEditingTextElementId(clickedElement.id)
           setTextEditPosition({
@@ -702,7 +702,7 @@ export function CanvasArea({ className = '', isTablet = false }: CanvasAreaProps
       const clickedElement = getElementAtPoint(canvasPos.x, canvasPos.y)
 
       // If double-clicking on a text element, enter edit mode
-      if (clickedElement && clickedElement.type === 'text') {
+      if (clickedElement?.type === 'text') {
         setEditingTextElementId(clickedElement.id)
         setTextEditPosition({
           x: clickedElement.position.x,
@@ -931,7 +931,7 @@ export function CanvasArea({ className = '', isTablet = false }: CanvasAreaProps
       if (!currentSlide || !currentPresentationId || !currentSlideId) return
 
       const file = e.dataTransfer.files?.[0]
-      if (!file || !file.type.startsWith('image/')) return
+      if (!file?.type.startsWith('image/')) return
 
       // Get drop position
       const canvasPos = getCanvasMousePosition(e.nativeEvent)
@@ -1027,8 +1027,8 @@ export function CanvasArea({ className = '', isTablet = false }: CanvasAreaProps
         nativeEvent: e,
         currentTarget: canvas,
         target: e.target as EventTarget,
-        preventDefault: () => e.preventDefault(),
-        stopPropagation: () => e.stopPropagation(),
+        preventDefault: () => { e.preventDefault(); },
+        stopPropagation: () => { e.stopPropagation(); },
         isDefaultPrevented: () => e.defaultPrevented,
         isPropagationStopped: () => false,
         persist: () => {},
@@ -1041,10 +1041,10 @@ export function CanvasArea({ className = '', isTablet = false }: CanvasAreaProps
     const onMouseMove = (e: MouseEvent) => {
       handleMouseMove(createSyntheticEvent(e))
     }
-    const onMouseUp = (e: MouseEvent) => {
+    const onMouseUp = (_e: MouseEvent) => {
       handleMouseUp()
     }
-    const onMouseLeave = (e: MouseEvent) => {
+    const onMouseLeave = (_e: MouseEvent) => {
       handleMouseLeave()
     }
     const onDoubleClick = (e: MouseEvent) => {
@@ -1462,7 +1462,7 @@ export function CanvasArea({ className = '', isTablet = false }: CanvasAreaProps
       {/* Layout selector dialog for adding slides */}
       <LayoutSelectorDialog
         isOpen={isLayoutSelectorOpen}
-        onClose={() => setIsLayoutSelectorOpen(false)}
+        onClose={() => { setIsLayoutSelectorOpen(false); }}
         onSelectLayout={handleLayoutSelect}
         title="Add New Slide"
         description="Choose a layout template for your new slide"

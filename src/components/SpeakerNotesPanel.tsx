@@ -123,7 +123,7 @@ export function SpeakerNotesPanel({ className = '' }: SpeakerNotesPanelProps) {
             className="h-full w-full resize-none text-sm"
             placeholder="Add speaker notes for this slide... (visible only to the presenter)"
             value={currentSlide.notes}
-            onChange={(e) => handleNotesUpdate(e.target.value)}
+            onChange={(e) => { handleNotesUpdate(e.target.value); }}
             aria-label="Speaker notes for current slide"
             data-testid="speaker-notes-textarea"
           />
